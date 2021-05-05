@@ -86,10 +86,12 @@ const runList = () => {
     }
 
   ]);
-}
+
 
   // Call the appropriate function depending on what the user chose
-  switch (choice) {
+ .then((answer)=> {
+
+ switch (answer.choice) {
     case "VIEW_EMPLOYEES":
       return viewEmployees();
     case "VIEW_EMPLOYEES_BY_DEPARTMENT":
@@ -119,5 +121,6 @@ const runList = () => {
     default:
       return quit();
   }
-
+})
+//create functions to call upon
 
