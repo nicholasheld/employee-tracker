@@ -11,21 +11,16 @@ const connection = mysql.createConnection({
   password: "Te$$ding0",
   database:"employee_db",
 })
+//connection success or throw an error
+connection.connect(() => {
+  // if (err) throw err;
+  console.log("Successful connection!");
+  runList();
+});
 
-
-init();
-
-// Display logo text, load main prompts
-function init() {
-  const logoText = logo({ name: "Employee Manager" }).render();
-
-  console.log(logoText);
-
-  loadMainPrompts();
-}
-
-async function loadMainPrompts() {
-  const { choice } = await prompt([
+const runList() => {
+  inquirer
+.prompt([
     {
       type: "list",
       name: "choice",
@@ -89,7 +84,9 @@ async function loadMainPrompts() {
         }
       ]
     }
+
   ]);
+}
 
   // Call the appropriate function depending on what the user chose
   switch (choice) {
