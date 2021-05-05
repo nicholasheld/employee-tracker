@@ -1,4 +1,4 @@
-const connection = require("./connection");
+import connection from "./connection";
 
 class DB {
   // Keeping a reference to the connection on the class in case we need it later
@@ -104,4 +104,4 @@ class DB {
   }
 }
 
-module.exports = new DB(connection);
+export default new DB(connection);
