@@ -1,7 +1,17 @@
-const { prompt } = require("inquirer");
-const logo = require("asciiart-logo");
-const db = require("./db");
+//required npm packages
+const inquirer = require("inquirer");
+const mysql = require("mysql");
 require("console.table");
+
+//connection to local host/MySQL
+const connection = mysql.createConnection({
+  host: "localhost",
+  port: process.env.PORT || 3306,
+  user: "root",
+  password: "Te$$ding0",
+  database:"employee_db",
+})
+
 
 init();
 
