@@ -23,7 +23,7 @@ function init() {
             {
                 type: 'list',
                 name: 'action',
-                message: 'What would you like to do with the workforce database?',
+                message: 'What would you like to do with the employee database?',
                 choices: ['Add_department', 'Add_role', 'Add_employee', 'View_departments', 'View_roles', 'View_employees', 'Update_employee_role', 'Update_managers', 'View_employees_by_manager', 'Delete_department', 'Delete_role', 'Delete_employee', 'View_dept_salary_budget', 'Quit']
             }
         ])
