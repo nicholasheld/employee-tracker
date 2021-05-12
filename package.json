@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm node index.js",
-    "seed": "npm seed.sql"
+    "start": "npm index.js",
+    "seeds": "npm seeds.sql"
   },
-  "author": "",
+  "author": "N Held",
   "license": "ISC",
   "dependencies": {
     "asciiart-logo": "^0.2.6",
