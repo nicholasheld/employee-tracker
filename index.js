@@ -2,6 +2,8 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 require("console.table");
+require('dotenv').config();
+const employeeModel = require('./db/model')
 
 //connection to local host/MySQL
 const connection = mysql.createConnection({
