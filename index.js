@@ -7,12 +7,15 @@ const employeeModel = require('./db/model')
 
 //connection to local host/MySQL
 const connection = mysql.createConnection({
-  host: "localhost",
-  port: process.env.PORT || 3306,
-  user: "root",
-  password: "Te$$ding0",
-  database:"employee_db",
-})
+    host: 'localhost',
+
+    port: 3306,
+
+    user: process.env.DB_USER,
+
+    password: process.env.DB_PASSWORD,
+    database: 'employee_db',
+});
 
 function init() {
     inquirer
