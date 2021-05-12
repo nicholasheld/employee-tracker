@@ -85,7 +85,7 @@ function addDepartment() {
         }
         ])
         .then((answer) => {
-            connection.query(middleMan.createDepartment(), {
+            connection.query(employeeModel.createDepartment(), {
                 name: answer.newDepartment
             })
             console.log('New department added');
@@ -113,7 +113,7 @@ function addRole() {
             }
         ])
         .then((answer) => {
-            connection.query(middleMan.createRole(), {
+            connection.query(employeeModel.createRole(), {
                 title: answer.title,
                 salary: answer.salary,
                 department_id: answer.departmentId
@@ -148,7 +148,7 @@ function addEmployee() {
             }
         ])
         .then((answer) => {
-            connection.query(middleMan.createEmployee(), {
+            connection.query(employeeModel.createEmployee(), {
                 first_name: answer.firstName,
                 last_name: answer.lastName,
                 role_id: answer.roleId,
@@ -160,7 +160,7 @@ function addEmployee() {
 };
 
 function viewDepartments() {
-    connection.query(middleMan.readDepartments(), (err, res) => {
+    connection.query(employeeModel.readDepartments(), (err, res) => {
         if (err) throw err;
         console.table(res);
         init();
@@ -168,7 +168,7 @@ function viewDepartments() {
 };
 
 function viewRoles() {
-    connection.query(middleMan.readRoles(), (err, res) => {
+    connection.query(employeeModel.readRoles(), (err, res) => {
         if (err) throw err;
         console.table(res);
         init();
@@ -176,7 +176,7 @@ function viewRoles() {
 };
 
 function viewEmployees() {
-    connection.query(middleMan.readEmployees(), (err, res) => {
+    connection.query(employeeModel.readEmployees(), (err, res) => {
         if (err) throw err;
         console.table(res);
         init();
@@ -184,7 +184,7 @@ function viewEmployees() {
 };
 
 function viewEmployeeByManagers() {
-    connection.query(middleMan.readEmployees(), (err, res) => {
+    connection.query(employeeModel.readEmployees(), (err, res) => {
         if (err) throw err;
         //create an object of managers whose ids match their employees manager_id 
         //they have a null value for manager_id
@@ -204,7 +204,7 @@ function viewEmployeeByManagers() {
                 }
             ])
                 .then((answers) => {
-                connection.query(middleMan.readEmployeeByManager(), [answers.managerSelected], (err, res) => {
+                connection.query(employeeModel.readEmployeeByManager(), [answers.managerSelected], (err, res) => {
                     if (err) throw err;
                     console.table(res);
                     init();
@@ -214,7 +214,7 @@ function viewEmployeeByManagers() {
         };
         
 function viewDeptSalaryBudget() {
-    connection.query(middleMan.readDepartments(), (err, res) => {
+    connection.query(employeeModel.readDepartments(), (err, res) => {
         if (err) throw err;
         const departmentChoices = res.map(({id, name}) => 
             ({ value: id, name: name })
@@ -228,7 +228,7 @@ function viewDeptSalaryBudget() {
                }
            ])
             .then((answer) => {
-                connection.query(middleMan.readDeptSalaryBudget(), [answer.departmentSelected], (err, res) => {
+                connection.query(employeeModel.readDeptSalaryBudget(), [answer.departmentSelected], (err, res) => {
                     if (err) throw err;
                     console.table(res);
                     init();
@@ -238,7 +238,7 @@ function viewDeptSalaryBudget() {
 };
 
 function updateEmployeeRole() {
-    connection.query(middleMan.readEmployeesAndRoles(), (err, res) => {
+    connection.query(employeeModel.readEmployeesAndRoles(), (err, res) => {
         if (err) throw err;
         const employeeChoices = res.map(({ employeeId, first_name, last_name }) =>
             ({ value: employeeId, name: `${first_name} ${last_name}` }));
@@ -259,7 +259,7 @@ function updateEmployeeRole() {
                     choices: roleChoices
                 }
             ]).then((answers) => {
-                connection.query(middleMan.updateEmployeeRole(),
+                connection.query(employeeModel.updateEmployeeRole(),
                     [answers.newRole, answers.employeeToChange], (err, res) => {
                         if (err) throw err;
                         console.log('Employee role updated');
@@ -270,7 +270,7 @@ function updateEmployeeRole() {
 };
 
 function updateManagers() {
-    connection.query(middleMan.readEmployees(), (err, res) => {
+    connection.query(employeeModel.readEmployees(), (err, res) => {
         if (err) throw err;
         const managerChoices = res.filter(({ manager_id }) => {
             if (manager_id) {
@@ -295,7 +295,7 @@ function updateManagers() {
                     choices: managerChoices
                 }
             ]).then((answers) => {
-                connection.query(middleMan.updateManagers(),
+                connection.query(employeeModel.updateManagers(),
                     [answers.newManager, answers.employeeToChange], (err, res) => {
                         if (err) throw err;
                         console.log('Employee manager updated');
@@ -306,7 +306,7 @@ function updateManagers() {
 }
 
 function deleteDepartment() {
-    connection.query(middleMan.readDepartments(), (err, res) => {
+    connection.query(employeeModel.readDepartments(), (err, res) => {
         if (err) throw err;
         const departmentChoices = res.map(({ id, name }) =>
             ({ value: id, name: name })
@@ -321,7 +321,7 @@ function deleteDepartment() {
                 }
             ])
             .then((answer) => {
-                connection.query(middleMan.destroyDepartment(), [answer.departmentSelected], (err, res) => {
+                connection.query(employeeModel.destroyDepartment(), [answer.departmentSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Department successfully deleted');
                     init();
@@ -331,7 +331,7 @@ function deleteDepartment() {
 };
 
 function deleteRole() {
-    connection.query(middleMan.readRoles(), (err, res) => {
+    connection.query(employeeModel.readRoles(), (err, res) => {
         if (err) throw err;
         const roleChoices = res.map(({ id, title }) =>
             ({ value: id, name: title })
@@ -346,7 +346,7 @@ function deleteRole() {
                 }
             ])
             .then((answer) => {
-                connection.query(middleMan.destroyRole(), [answer.roleSelected], (err, res) => {
+                connection.query(employeeModel.destroyRole(), [answer.roleSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Role successfully deleted');
                     init();
@@ -356,7 +356,7 @@ function deleteRole() {
 };
 
 function deleteEmployee() {
-    connection.query(middleMan.readEmployees(), (err, res) => {
+    connection.query(employeeModel.readEmployees(), (err, res) => {
         if (err) throw err;
         const employeeChoices = res.map(({ id, first_name, last_name }) =>
             ({ value: id, name: `${first_name} ${last_name}` })
@@ -371,7 +371,7 @@ function deleteEmployee() {
                 }
             ])
             .then((answer) => {
-                connection.query(middleMan.destroyEmployee(), [answer.employeeSelected], (err, res) => {
+                connection.query(employeeModel.destroyEmployee(), [answer.employeeSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Employee successfully deleted');
                     init();
