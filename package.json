@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "npm node index.js",
+    "seed": "npm seed.sql"
   },
   "author": "",
   "license": "ISC",
