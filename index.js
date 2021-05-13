@@ -92,6 +92,7 @@ function addDepartment() {
                 name: answer.newDepartment
             })
             console.log('New department added');
+            console.table(res);
             init()
         })
 };
@@ -266,6 +267,7 @@ function updateEmployeeRole() {
                     [answers.newRole, answers.employeeToChange], (err, res) => {
                         if (err) throw err;
                         console.log('Employee role updated');
+                        console.table(res);
                         init()
                     })
             })
@@ -302,6 +304,7 @@ function updateManagers() {
                     [answers.newManager, answers.employeeToChange], (err, res) => {
                         if (err) throw err;
                         console.log('Employee manager updated');
+                        console.table(res);
                         init()
                     })
             })
@@ -327,6 +330,7 @@ function deleteDepartment() {
                 connection.query(employeeModel.destroyDepartment(), [answer.departmentSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Department successfully deleted');
+                    console.table(res);
                     init();
             })
         })
@@ -352,6 +356,7 @@ function deleteRole() {
                 connection.query(employeeModel.destroyRole(), [answer.roleSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Role successfully deleted');
+                    console.table(res);
                     init();
                 })
             })
@@ -377,6 +382,7 @@ function deleteEmployee() {
                 connection.query(employeeModel.destroyEmployee(), [answer.employeeSelected], (err, res) => {
                     if (err) throw err;
                     console.log('Employee successfully deleted');
+                    console.table(res);
                     init();
                 })
             })
@@ -385,5 +391,6 @@ function deleteEmployee() {
 
 connection.connect((err) => {
     if (err) throw err;
+    console.table(res);
     init()
 });
